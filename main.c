@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "bubbleSort.h"
+#include "quickSort.h"
 
 int main()
 {
