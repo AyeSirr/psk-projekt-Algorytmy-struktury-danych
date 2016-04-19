@@ -1,3 +1,11 @@
+bin/*
+obj/*
+psk-projekt-Algorytmy-struktury-danych.cbp
+psk-projekt-Algorytmy-struktury-danych.depend
+psk-projekt-Algorytmy-struktury-danych.layout
+
+
+
 # Object files
 *.o
 *.ko
