@@ -1,0 +1,93 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+void _quickSort(long long int x[],int first,int last){
+    int pivot,j,temp,i;
+
+     if(first<last){
+         pivot=first;
+         i=first;
+         j=last;
+
+         while(i<j){
+             while(x[i]<=x[pivot]&&i<last)
+                 i++;
+             while(x[j]>x[pivot])
+                 j--;
+             if(i<j){
+                 temp=x[i];
+                  x[i]=x[j];
+                  x[j]=temp;
+             }
+         }
+
+         temp=x[pivot];
+         x[pivot]=x[j];
+         x[j]=temp;
+         _quickSort(x,first,j-1);
+         _quickSort(x,j+1,last);
+
+    }
+}
+void bubbleSort(long long int table[], int size)
+{
+	int i, j, temp;
+	for (i = 0; i<size-1; i++)
+    {
+		for (j=0; j<size-1-i; j++)
+		{
+			if (table[j] > table[j+1])
+			{
+				temp = table[j+1];
+				table[j+1] = table[j];
+				table[j] = temp;
+			}
+		}
+    }
+}
+void filltable(int choice, int size, long long int table[])
+{
+    if(choice ==1)
+    {
+        for(int i=0;i<size;i++)
+            table[i]= rand()% 100;
+    }
+    if(choice ==2)
+    {
+        for(int i=0;i<size;i++)
+            cin >> table[i];
+    }
+}
+void printtable(long long int table[], int size)
+{
+    for(int i=0;i<size;i++)
+    cout << table[i] <<" ";
+}
+void givetime(long long int table[], int size)
+{
+  int start = clock();
+    bubbleSort(table, size);
+   cout << "Czas wykonywania sortowania babelkowego: " << clock() - start << " ms" <<endl;
+  // printtable(table, size);
+   int start2 = clock();
+   _quickSort(table, 0, size-1);
+    cout << "Czas wykonywania quicksort: " << clock() - start2 << " ms" <<endl;
+  //  printtable(table, size);
+}
+int main()
+{
+    srand(time(NULL));
+    long long int size = 0, choice;
+    cout << "Podaj rozmiar tablicy" << endl;
+    cin >> size;
+    long long int table[size];
+        cout << "Podaj sposob wprowadzania liczb 1 - losowo, 2 - za pomoca klawiatury , 0 - koniec" << endl;
+        cin >> choice;
+        filltable(choice, size, table);
+      //  printtable(table, size);
+        givetime(table, size);
+    return 0;
+}
